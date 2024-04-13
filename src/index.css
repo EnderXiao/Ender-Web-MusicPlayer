@@ -1,0 +1,136 @@
+/* 清除盒子内外边距 */
+:root {
+    --theme-bg-color: rgba(16 18 27 / 40%);
+    --theme-bg-color-2: rgba(16 18 27 / 60%);
+    --theme-bg-color-3: rgba(16 18 27 / 90%);
+    --theme-bg-color-deep: rgb(16, 18, 27);
+    --border-color: rgba(113 119 144 / 25%);
+    --theme-color: rgba(251, 249, 249, 90%);
+    --alert-color: #8076a3;
+    --inactive-color: rgb(113 119 144 / 78%);
+    --body-font: "Poppins", sans-serif;
+    --hover-menu-bg: rgba(12 15 25 / 30%);
+    --content-title-color: #999ba5;
+    --content-bg: rgb(146 151 179 / 13%);
+    --button-inactive: rgb(249 250 251 / 55%);
+    --dropdown-bg: #21242d;
+    --dropdown-hover: rgb(42 46 60);
+    --popup-bg: rgb(22 25 37);
+    --search-bg: #14162b;
+    --overlay-bg: rgba(36, 39, 59, 0.3);
+    --scrollbar-bg: rgb(1 2 3 / 40%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.el-tabs__item.is-active {
+    color: var(--alert-color) !important;
+}
+.el-tabs__item {
+    color: var(--theme-color) !important;
+}
+.el-tabs__active-bar {
+    background-color: var(--alert-color) !important;
+}
+
+.el-table .el-table__cell {
+    padding: 14px 0 ;
+}
+.el-slider__bar {
+    background-color: var(--alert-color) !important;
+}
+
+.el-slider__button {
+    border-color: var(--alert-color) !important;
+}
+
+html {
+    box-sizing: border-box;
+    height: 100%;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* 指定body字体，颜色，行高 */
+body {
+    /* CSS3 文字抗锯齿效果 */
+    -webkit-font-smoothing: antialiased;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    /* margin: 0 15px; */
+}
+
+#app {
+    /* max-width: 1550px; */
+    width: 100%;
+    height: 100%;
+}
+
+/* 斜体文字不倾斜 */
+em,
+i {
+    font-style: normal;
+}
+
+/* 去除列表前的小圆点 */
+li {
+    list-style: none;
+}
+
+/* 处理图片 */
+img {
+    /* 照顾低版本浏览器中，如果图片外面包含了链接将会产生边框的问题 */
+    border: 0;
+    /* 取消图片由于基线对齐而底侧有空白间隙的问题 */
+    vertical-align: middle
+}
+
+/* 让鼠标经过button时鼠标变成小手 */
+button {
+    cursor: pointer;
+}
+
+/* 链接颜色 */
+a {
+    color: var(--theme-color);
+    text-decoration: none
+}
+
+a:hover {
+    color: var(--alert-color);
+}
+
+/* 指定按钮以及输入子体 */
+button,
+input {
+    font-family: Microsoft YaHei;
+}
+
+/* 元素隐藏标准样式 */
+.hiden,
+.none {
+    display: none;
+}
+
+/* 清除浮动样式 */
+.clearfix:after {
+    visibility: hidden;
+    clear: both;
+    display: block;
+    content: ".";
+    height: 0;
+}
+
+.clearfix {
+    zoom: 1;
+}

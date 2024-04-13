@@ -1,0 +1,48 @@
+$namespace: "ender" !default;
+$block-sel: "-" !default;
+$element-sel: "__" !default;
+$mod-sel: "--" !default;
+
+// TODO: 定义block生成模块, $block为block名
+@mixin b($block) {
+    // TODO: 凭借名称
+    $b_name: #{$namespace + $block-sel + $block};
+    // TODO: 初始化block
+    .#{$b_name} {
+        @content;
+    }
+}
+
+// TODO: 定义element生成模块
+
+@mixin e($el) {
+    // TODO: 获取父节点类名
+    $selector:&;
+    // TODO: 跳出嵌套
+    @at-root {
+        // TODO: 拼接名称
+        #{$selector + $element-sel + $el} {
+            @content;
+        }
+    }
+}
+
+// TODO: 定义modify生成模块
+
+@mixin m($mod) {
+    // TODO: 获取父节点类名
+    $selector:&;
+    // TODO: 跳出嵌套
+    @at-root {
+        // TODO: 拼接名称
+        #{$selector + $mod-sel + $mod} {
+            @content;
+        }
+    }
+}
+
+// TODO: 创建独立渲染区
+@mixin bfc {
+    height: 100%;
+    overflow: hidden;
+}
