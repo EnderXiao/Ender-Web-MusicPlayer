@@ -134,3 +134,17 @@ input {
 .clearfix {
     zoom: 1;
 }
+
+/* flex */
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.items-center {
+    align-items: center;
+    justify-content: center;
+}

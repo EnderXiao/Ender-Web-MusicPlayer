@@ -7,7 +7,10 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    Comment: typeof import('./../components/Comment/index.vue')['default']
     CommentsCard: typeof import('./../components/CommentsCard/index.vue')['default']
+    Components: typeof import('./../components/index.vue')['default']
+    ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElDrawer: typeof import('element-plus/es')['ElDrawer']
     ElDropdown: typeof import('element-plus/es')['ElDropdown']
@@ -24,6 +27,7 @@ declare module 'vue' {
     HeadBar: typeof import('./../components/HeadBar/index.vue')['default']
     IconSolarBellBingLineDuotone: typeof import('~icons/solar/bell-bing-line-duotone')['default']
     IconSolarCatBroken: typeof import('~icons/solar/cat-broken')['default']
+    IconSolarChatRoundLikeBroken: typeof import('~icons/solar/chat-round-like-broken')['default']
     IconSolarClapperboardOpenPlayBroken: typeof import('~icons/solar/clapperboard-open-play-broken')['default']
     IconSolarCloudBroken: typeof import('~icons/solar/cloud-broken')['default']
     IconSolarListArrowDownBroken: typeof import('~icons/solar/list-arrow-down-broken')['default']

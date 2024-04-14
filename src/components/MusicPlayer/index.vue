@@ -134,9 +134,7 @@
                     </div>
                 </div>
                 <div class="ender-drawerBody__body">
-                    <div class="ender-drawBody__comments">
-                        
-                    </div>
+                    <comment :id="currentSong.id"></comment>
                 </div>
             </div>
         </el-drawer>
