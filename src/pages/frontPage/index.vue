@@ -38,8 +38,9 @@
     onMounted(async () => {
         state.loading = true;
         // TODO: 获取推荐新歌
-        getRecommendNewSong().then(({ data }:any) => {
-            state.tableDate = data.result.map((item:any) => {
+        getRecommendNewSong().then((res) => {
+            console.log(res)
+            state.tableDate = res.result.map((item:any) => {
                 const names = item.song.artists.map((subItem:any) => subItem.name).join(",");
                 return {
                     cover: item.picUrl,

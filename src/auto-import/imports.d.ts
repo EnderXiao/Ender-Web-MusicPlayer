@@ -74,6 +74,7 @@ declare global {
   const useImgToBase64: typeof import('../hooks/useImgToBase64')['default']
   const useLazy: typeof import('../hooks/useLazy')['default']
   const useLink: typeof import('vue-router')['useLink']
+  const useMyIntersectObserver: typeof import('../hooks/useMyIntersectObserver')['useMyIntersectObserver']
   const useRoute: typeof import('vue-router')['useRoute']
   const useRouter: typeof import('vue-router')['useRouter']
   const useSlots: typeof import('vue')['useSlots']

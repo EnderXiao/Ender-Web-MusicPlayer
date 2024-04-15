@@ -43,111 +43,107 @@
     
 <script setup lang='ts'>
     import { cloudsearch } from "../../api/api"
-    import { SearchItem, menuItem, Music } from "../../store/type"
-    import path from 'path';
+import { SearchItem, menuItem, Music } from "../../store/type"
+import path from 'path';
 import { da } from "element-plus/es/locale";
-    const route = useRoute()
-    const state = reactive<{
-        isLoading: boolean,
-        dataTable: any[],
-        totalResult: number,
-        menuList: menuItem[],
-        activeName: string,
-        currentPage: number,
-    }>({
-        isLoading: true,
-        dataTable: [],
-        totalResult: 0,
-        menuList: [
-            {
-                index: 1,
-                value: "songs",
-                title: "单曲"
-            },
-            {
-                index: 100,
-                value: "",
-                title: "歌手"
-            },
-            {
-                index: 10,
-                value: "",
-                title: "专辑"
-            },
-
-            {
-                index: 1004,
-                value: "mvs",
-                title: "MV"
-            },
-            {
-                index: 1000,
-                value: "",
-                title: "歌单"
-            },
-        ],
-        activeName: "1",
-        currentPage: 1,
-    })
-
-    const getSearchResult = async (type: string) => {
-        state.isLoading = true
-        if(!state.dataTable.length){
-            cloudsearch({
-                keywords: route.query.keyWords as string,
-                offset: (state.currentPage - 1) * 30,
-                limit: 30,
-                type: type
-            }).then(({ data }) => {
-                console.log(data)
-                const result = data.result
-                switch(type) {
-                    case "1":
-                        state.dataTable = result.songs.map(item => {
-                            const singerNames = item.ar.map(subItem => subItem.name).join(',');
-                            return {
-                                    id: item.id,
-                                    title: item.name,
-                                    singer: singerNames,
-                                    album: item.al.name,
-                                    cover: item.al.picUrl,
-                                    src: "",
-                                    time: item.dt,
-                                    mv: item.mv,
-                                    Lyric: ""
-                                }
+const route = useRoute()
+const state = reactive<{
+    isLoading: boolean,
+    dataTable: any[],
+    totalResult: number,
+    menuList: menuItem[],
+    activeName: string,
+    currentPage: number,
+}>({
+    isLoading: true,
+    dataTable: [],
+    totalResult: 0,
+    menuList: [
+        {
+            index: 1,
+            value: "songs",
+            title: "单曲"
+        },
+        {
+            index: 100,
+            value: "",
+            title: "歌手"
+        },
+        {
+            index: 10,
+            value: "",
+            title: "专辑"
+        },
+        {
+            index: 1004,
+            value: "mvs",
+            title: "MV"
+        },
+        {
+            index: 1000,
+            value: "",
+            title: "歌单"
+        },
+    ],
+    activeName: "1",
+    currentPage: 1,
+})
+const getSearchResult = async (type: string) => {
+    state.isLoading = true
+    if(!state.dataTable.length){
+        cloudsearch({
+            keyword: route.query.keyWords as string,
+            offset: (state.currentPage - 1) * 30,
+            limit: 30,
+            type: type
+        }).then((res) => {
+            console.log(res)
+            const result = res.result
+            switch(type) {
+                case "1":
+                    state.dataTable = result.songs.map(item => {
+                        const singerNames = item.ar.map(subItem => subItem.name).join(',');
+                        return {
+                                id: item.id,
+                                title: item.name,
+                                singer: singerNames,
+                                album: item.al.name,
+                                cover: item.al.picUrl,
+                                src: "",
+                                time: item.dt,
+                                mv: item.mv,
+                                Lyric: ""
                             }
-                        )
-                        state.totalResult = result.songCount
-                        break;
-                    case "1004":
-                        state.dataTable = result.mvs
-                        state.totalResult = result.mvCount
-                        break;
-                }
-
-                state.isLoading = false
-            })
-        }
+                        }
+                    )
+                    state.totalResult = result.songCount
+                    break;
+                case "1004":
+                    state.dataTable = result.mvs
+                    state.totalResult = result.mvCount
+                    break;
+            }
+            state.isLoading = false
+        })
     }
-    const handleClick = (e:any) => {
-        console.log(e)
-        if(e.props.name){
-            state.dataTable = []
-            state.isLoading = true
-            getSearchResult(e.props.name)
-        }
+}
+const handleClick = (e:any) => {
+    console.log(e)
+    if(e.props.name){
+        state.dataTable = []
+        state.isLoading = true
+        getSearchResult(e.props.name)
     }
-
-    // 侦听搜索的关键字
-    watch(() => route.query.keyWorks, () => {
-        if (!route.query.keyWorks){
-            return getSearchResult("1")
-        }
-    })
-    onMounted(() => {
-        getSearchResult("1")
-    })
+}
+// 侦听搜索的关键字
+watch(() => route.query.keyWorks, () => {
+    if (!route.query.keyWorks){
+        return getSearchResult("1")
+    }
+})
+onMounted(() => {
+    getSearchResult("1")
+})
 </script>
     
 <style lang="scss" scoped>

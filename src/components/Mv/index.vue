@@ -19,16 +19,16 @@
     
 <script setup lang='ts'>
     import { getMv } from "../../api/api";
-    import { mvItem } from "../../store/type"
+import { MvObj } from "../../api/type";
     const router = useRouter()
     const props = withDefaults(defineProps<{
-        tableData: mvItem[]
+        tableData: MvObj[]
     }>(), {
         tableData: () => []
     })
     const state = reactive<{
         mvLoading: boolean,
-        mvList: mvItem[],
+        mvList: MvObj[],
     }>({
         mvLoading: true,
         mvList: [],

@@ -106,9 +106,9 @@
             direction="btt"
             v-model="state.drawerShow"
             destroy-on-close
-            size="100%"
+            size="calc(100% - 90px)"
             ref="drawer"
-            :style="'background-color: var(--theme-bg-color-deep);'"
+            :style="'background-color: var(--theme-bg-color-deep);top:0'"
         >
             <div class="ender-drawerBody">
                 <div class="ender-drawerBody__banner">
@@ -310,10 +310,10 @@
     const updateLyric = () => {
         state.currentLyrics = []
         state.lyricLoading = true
-        getLyric(currentSong.value.id).then(({ data }) => {
+        getLyric(currentSong.value.id).then((res) => {
             let lyric = ""
             try {
-                lyric = data.lrc.lyric
+                lyric = res.lrc.lyric
                 console.log(lyric)
             } catch (error) {
                 lyric = ""
@@ -458,10 +458,10 @@
     }
 }
 @include b(drawerBody) {
-    height: 90%;
+    height: 100%;
     @include e(banner) {
         display: flex;
-        height: 90%;
+        height: 100%;
         flex-direction: row;
         align-items: center;
         justify-content: space-around;
@@ -483,7 +483,7 @@
             overflow-y: auto;
             height: 100%;
             width: 100%;
-            padding: 240px 0;
+            padding: 240px 40px;
             // transition: all .5s cubic-bezier(0.49, 0.21, 0.22, 0.84);
             scroll-behavior: smooth;
             &:hover {

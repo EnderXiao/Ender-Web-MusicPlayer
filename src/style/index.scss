@@ -1,6 +1,10 @@
+@use 'tailwind.css';
+@use "BEM";
+@use "theme";
+
 /* 清除盒子内外边距 */
 :root {
-    --theme-bg-color: rgba(16 18 27 / 40%);
+    --theme-bg-color: rgba(22, 16, 16, 0.4);
     --theme-bg-color-2: rgba(16 18 27 / 60%);
     --theme-bg-color-3: rgba(16 18 27 / 90%);
     --theme-bg-color-deep: rgb(16, 18, 27);
@@ -129,22 +133,4 @@ input {
     display: block;
     content: ".";
     height: 0;
-}
-
-.clearfix {
-    zoom: 1;
-}
-
-/* flex */
-.flex {
-    display: flex;
-}
-
-.flex-col {
-    flex-direction: column;
-}
-
-.items-center {
-    align-items: center;
-    justify-content: center;
 }

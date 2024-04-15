@@ -60,13 +60,13 @@
             musicStore.currentIndex = isExisting;
         } else {
             // TODO: 否则添加到播放列表
-            getSongUrl(params).then(({ data }) => {
-                console.log(data)
+            getSongUrl(params).then((res) => {
+                console.log(res)
                 let newMusic:Music = {
                     title: params.title,
                     singer: params.singer,
                     cover: params.cover,
-                    src: data.data[0].url,
+                    src: res.data[0].url,
                     time: params.time,
                     album: params.album,
                     id: params.id,

@@ -1,6 +1,12 @@
-import { Music, SearchParams } from "../store/type";
-import request from "./http";
-import { CommentParams } from "./type";
+import { Music } from "../store/type";
+import request, { httpGet } from "./http";
+import {
+    ResultData,
+    SearchParams,
+    CommentParams,
+    CommentsAry,
+    ResSearch,
+} from "./type";
 
 // TODO: vercel配置
 const baseIP = import.meta.env.BASE_IP;
@@ -34,11 +40,11 @@ const getUserPlayList = (uid: string) =>
 
 // TODO: 获取音乐链接
 const getSongUrl = (params: Music) =>
-    request.get(`song/url/v1?id=${params.id}&level=exhigh&${restString}`);
+    httpGet(`song/url/v1?id=${params.id}&level=exhigh&${restString}`);
 
 // TODO: 获取推荐新歌音乐
 const getRecommendNewSong = () =>
-    request.get("/personalized/newsong" + "?" + restString);
+    httpGet<ResultData>(`/personalized/newsong?${restString}`);
 
 // TODO: 获取音乐歌词
 const getLyric = (id: string) => request.get(`/lyric?id=${id}`);
@@ -48,7 +54,7 @@ const getMv = () => request.get(`mv/first`);
 
 // TODO: 获取歌曲评论
 const getComments = (params: CommentParams) =>
-    request.get(
+    httpGet<CommentsAry>(
         `/comment/${params.type}?id=${params.id}&limit=${
             params.limit || 30
         }&offset=${((params.offset || 1) - 1) * 30}`
@@ -56,8 +62,12 @@ const getComments = (params: CommentParams) =>
 
 // TODO: 搜索歌曲
 const cloudsearch = (params: SearchParams) =>
-    request.get(
-        `cloudsearch?keywords=${params.keywords}&limit=${params.limit}&offset=${params.offset}&type=${params.type}&${restString}`
+    httpGet<ResSearch>(
+        `cloudsearch?keywords=${params.keyword || ""}&limit=${
+            params.limit || 30
+        }&offset=${((params.offset || 1) - 1) * (params.limit || 30)}&type=${
+            params.type || 1
+        }&${restString}`
     );
 
 // TODO: 并发请求控制
